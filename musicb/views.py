@@ -26,21 +26,21 @@ def searching(request):
         except(Member.DoesNotExist):
             return render(request, 'musicb/index.html', {'error_msg': "No result for " + target})
         else:
-            return HttpResponseRedirect(reverse('musicblog:memberview_detail', args=(target_member.name,)))
+            return HttpResponseRedirect(reverse('musicblog:memberview_detail', args=(target_member.slug,)))
     elif stype=='album':
         try:
             target_album = Album.objects.get(title=target)
         except(Album.DoesNotExist):
             return render(request, 'musicb/index.html', {'error_msg': "No result for " + target})
         else:
-            return HttpResponseRedirect(reverse('musicblog:albumview_detail', args=(target_album.name,)))
+            return HttpResponseRedirect(reverse('musicblog:albumview_detail', args=(target_album.slug,)))
     else:
         try:
             target_song = Song.objects.get(title=target)
         except(Album.DoesNotExist):
             return render(request, 'musicb/index.html', {'error_msg': "No result for " + target})
         else:
-            return HttpResponseRedirect(reverse('musicblog:songview_detail', args=(target_song.name,)))
+            return HttpResponseRedirect(reverse('musicblog:songview_detail', args=(target_song.slug,)))
 
 
 class ArtistLV(ListView):
