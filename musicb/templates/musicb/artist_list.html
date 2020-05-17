@@ -1,0 +1,14 @@
+{% extends 'musicb/base.html' %}
+{% block title %}Artist List{% endblock %}
+{% block content %}
+    <h3>Artist List</h3>
+    {% if object_list %}
+        <ul>
+            {% for artist in object_list %}
+                <li><a href="{% url 'musicblog:artistview_detail' artist.slug %}">{{artist.slug}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        There is no artist.
+    {% endif %}
+{% endblock %}

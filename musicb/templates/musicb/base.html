@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <style>
+            {% block extra-style %}{% endblock extra-style %}
+        </style>
+    </head>
+    <body>
+        <h1>Music Blog</h1>
+        <h3>Search</h3>
+        <form action="{% url 'musicblog:search' %}" method="POST">
+            {% csrf_token %}
+            <label for="keyword">Search for:</label>
+            <select id="searching" name='sfor'>
+                <option value="artist">Artist</option>
+                <option value="member">Member</option>
+                <option value="album">Album</option>
+                <option value="song">Song</option>
+            </select>
+            <input type="text" id="keyword" name="kword">
+            <input type="submit" value="Search">
+        </form>
+        {% block content %}{% endblock content %}
+    </body>
+</html>

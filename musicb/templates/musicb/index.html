@@ -1,0 +1,14 @@
+{% extends 'musicb/base.html' %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    {% if error_msg %}
+        Error: {{error_msg}}
+    {% endif %}
+    <h3>Menu</h3>
+    <ul>
+        <li><a href="{% url 'musicblog:artistview' %}">Artist List</a></li>
+        <li><a href="{% url 'musicblog:memberview' %}">Member List</a></li>
+        <li><a href="{% url 'musicblog:albumview' %}">Album List</a></li>
+        <li><a href="{% url 'musicblog:songview' %}">Song List</a></li>
+    </ul>
+{% endblock content %}

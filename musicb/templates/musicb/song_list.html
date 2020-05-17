@@ -1,0 +1,14 @@
+{% extends 'musicb/base.html' %}
+{% block title %}Song List{% endblock %}
+{% block content %}
+    <h3>Song List</h3>
+    {% if object_list %}
+        <ul>
+            {% for song in object_list %}
+                <li><a href="{% url 'musicblog:songview_detail' song.slug %}">{{song.title}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        There is no song.
+    {% endif %}
+{% endblock %}
