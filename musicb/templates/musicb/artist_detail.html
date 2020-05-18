@@ -4,7 +4,7 @@
 {% block content %}
     <h2>Artist</h2>
     <h3>{{object.name}}</h3>
-    <img src="{% static 'img/'|add:object.name|add:'.jpg' %}" alt='{{object.name}} image' width='400px' height='300px'>
+    <img src="{% static 'img/'|add:object.name|add:'_main.jpg' %}" alt='{{object.name}} image' width='400px' height='300px'>
     <ul>
         <li>Company - {% if object.company %}{{object.company}}{% else %}None{% endif %}</li>
         <li>Debut year - {% if object.debut %}{{object.debut|date:"Y"}}{% else %}Unknown{% endif %}</li>

@@ -47,7 +47,7 @@ class Song(models.Model):
     artist = models.ForeignKey('Artist', on_delete=models.CASCADE)
     album = models.ForeignKey('Album', on_delete=models.CASCADE, null=True, blank=True)
     is_titlesong = models.BooleanField(default=False)
-    youtube_id = models.CharField(max_length=100)
+    youtube_id = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.title
