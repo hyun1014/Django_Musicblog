@@ -4,6 +4,6 @@
     <h2>Member</h2>
     <h3>{{object.name}}</h3>
     <ul>
-        <li>Team - {% if object.team %}<a href="{% url 'musicblog:artistview_detail' object.team.slug %}">{{object.team}}</a>{% else %}None{% endif %}</li>
+        <li>Team - {% if object.team %}<a class='no_linkdecoration' href="{% url 'musicblog:artistview_detail' object.team.slug %}">{{object.team}}</a>{% else %}None{% endif %}</li>
     </ul>
 {% endblock %}

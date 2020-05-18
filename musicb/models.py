@@ -45,6 +45,7 @@ class Song(models.Model):
     title = models.CharField(verbose_name='title', null=False, blank=False, max_length=100)
     slug = models.SlugField("Slug", unique=True, allow_unicode=True, help_text='one word for title alias.')
     artist = models.ForeignKey('Artist', on_delete=models.CASCADE)
+    album = models.ForeignKey('Album', on_delete=models.CASCADE, null=True, blank=True)
     is_titlesong = models.BooleanField(default=False)
     youtube_id = models.CharField(max_length=100)
 

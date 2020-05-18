@@ -1,11 +1,37 @@
 {% extends 'musicb/base.html' %}
+{% load static %}
 {% block title %}About {{object.name}}{% endblock %}
 {% block content %}
     <h2>Artist</h2>
     <h3>{{object.name}}</h3>
+    <img src="{% static 'img/'|add:object.name|add:'.jpg' %}" alt='{{object.name}} image' width='400px' height='300px'>
     <ul>
         <li>Company - {% if object.company %}{{object.company}}{% else %}None{% endif %}</li>
         <li>Debut year - {% if object.debut %}{{object.debut|date:"Y"}}{% else %}Unknown{% endif %}</li>
+        <li>
+            Member<br>
+            <ul>
+                {% for member in object.member_set.all %}
+                    <li><a class='no_linkdecoration' href="{% url 'musicblog:memberview_detail' member.slug %}">{{member.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li>
+            Albums<br>
+            <ul>
+                {% for album in object.album_set.all %}
+                    <li><a class='no_linkdecoration' href="{% url 'musicblog:albumview_detail' album.slug %}">{{album.title}}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li>
+            Tracks<br>
+            <ul>
+                {% for song in object.song_set.all %}
+                    <li><a class='no_linkdecoration' href="{% url 'musicblog:songview_detail' song.slug %}">{{song.title}}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
     </ul>
-    {{object.artist_info}}
+    {{object.artist_info|linebreaks}}
 {% endblock %}

@@ -3,15 +3,18 @@
     <head>
         <title>{% block title %}{% endblock title %}</title>
         <style>
-            #home {
+            a.no_linkdecoration {
                 text-decoration:none;
                 color:black;
+            }
+            a:hover {
+                color:blue;
             }
             {% block extra-style %}{% endblock extra-style %}
         </style>
     </head>
     <body>
-        <h1><a id='home' href="{% url 'musicblog:index' %}">Music Blog</a></h1>
+        <h1><a id='home' class='no_linkdecoration' href="{% url 'musicblog:index' %}">Music Blog</a></h1>
         <h3>Search</h3>
         <form action="{% url 'musicblog:search' %}" method="POST">
             {% csrf_token %}

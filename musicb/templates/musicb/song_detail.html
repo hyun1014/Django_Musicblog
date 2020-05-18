@@ -4,6 +4,7 @@
     <h2>Song</h2>
     <h3>{{object.title}}</h3>
     <ul>
-        <li>Artist - {% if object.artist %}<a href="{% url 'musicblog:artistview_detail' object.slug %}">{{object.artist}}</a>{% else %}Unknown{% endif %}</li>
+        <li>Artist - {% if object.artist %}<a class='no_linkdecoration' href="{% url 'musicblog:artistview_detail' object.artist.slug %}">{{object.artist}}</a>{% else %}Unknown{% endif %}</li>
+        <li>Album - {% if object.album %}<a class='no_linkdecoration' href="{% url 'musicblog:albumview_detail' object.album.slug %}">{{object.album}}</a>{% else %}Unknown{% endif %}</li>
     </ul>
 {% endblock %}

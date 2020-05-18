@@ -80,6 +80,15 @@ class AlbumLV(ListView):
 
 class AlbumDV(DetailView):
     model = Album
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context["title_tracks"] = context['object'].song_set.filter(is_titlesong=True)
+        except(Song.DoesNotExist):
+            pass
+        return context
+    
+    
 
 class SongLV(ListView):
     def get_queryset(self):

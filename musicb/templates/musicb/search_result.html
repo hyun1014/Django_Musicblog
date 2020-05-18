@@ -5,7 +5,7 @@
     {% if artist_list %}
         <ul>
             {% for artist in artist_list %}
-                <li><a href="{% url 'musicblog:artistview_detail' artist.slug %}">{{artist.name}}</a></li>
+                <li><a class='no_linkdecoration' href="{% url 'musicblog:artistview_detail' artist.slug %}">{{artist.name}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
@@ -16,7 +16,7 @@
     {% if member_list %}
         <ul>
             {% for member in member_list %}
-                <li><a href="{% url 'musicblog:memberview_detail' member.slug %}">{{member.name}}</a></li>
+                <li><a class='no_linkdecoration' href="{% url 'musicblog:memberview_detail' member.slug %}">{{member.name}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
@@ -27,7 +27,7 @@
     {% if album_list %}
         <ul>
             {% for album in album_list %}
-                <li><a href="{% url 'musicblog:albumview_detail' album.slug %}">{{album.title}}</a></li>
+                <li><a class='no_linkdecoration' href="{% url 'musicblog:albumview_detail' album.slug %}">{{album.title}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
@@ -38,11 +38,10 @@
     {% if song_list %}
         <ul>
             {% for song in song_list %}
-                <li><a href="{% url 'musicblog:songview_detail' song.slug %}">{{song.title}}</a></li>
+                <li><a class='no_linkdecoration' href="{% url 'musicblog:songview_detail' song.slug %}">{{song.title}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
         No matched found.
     {% endif %}
-    <h1>{{sibal}}</h1>
 {% endblock %}

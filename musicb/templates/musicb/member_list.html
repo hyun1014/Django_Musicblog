@@ -5,7 +5,7 @@
     {% if object_list %}
         <ul>
             {% for member in object_list %}
-                <li><a href="{% url 'musicblog:memberview_detail' member.name %}">{{member.name}}</a></li>
+                <li><a class='no_linkdecoration' href="{% url 'musicblog:memberview_detail' member.name %}">{{member.name}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
