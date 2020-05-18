@@ -1,10 +1,10 @@
 {% extends 'musicb/base.html' %}
 {% block title %}About {{object.title}}{% endblock %}
 {% block content %}
-    <h2>Search result</h2>
+    <h2>Album</h2>
     <h3>{{object.title}}</h3>
     <ul>
-        <li>Artist - {{object.artist}}</li>
+        <li>Artist - <a href="{% url 'musicblog:artistview_detail' object.artist.slug %}">{{object.artist}}</a></li>
         <li>On sale - {{object.on_sale|date:"Y-m-d"}}</li>
     </ul>
 {% endblock %}

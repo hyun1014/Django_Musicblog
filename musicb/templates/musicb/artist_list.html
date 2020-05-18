@@ -5,7 +5,7 @@
     {% if object_list %}
         <ul>
             {% for artist in object_list %}
-                <li><a href="{% url 'musicblog:artistview_detail' artist.slug %}">{{artist.slug}}</a></li>
+                <li><a href="{% url 'musicblog:artistview_detail' artist.slug %}">{{artist.name}}</a></li>
             {% endfor %}
         </ul>
     {% else %}

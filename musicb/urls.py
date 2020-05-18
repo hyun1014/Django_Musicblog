@@ -4,7 +4,7 @@ from . import views
 app_name = 'musicblog'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
-    path('search/', views.searching, name='search'),
+    path('search/', views.SearchView.as_view(), name='search'),
     path('artist/', views.ArtistLV.as_view(), name='artistview'),
     path('artist/(?P<slug>[-\w]+)/$', views.ArtistDV.as_view(), name='artistview_detail'), #이렇게 안하면 한글 slug는 인식 못함
     path('member/', views.MemberLV.as_view(), name='memberview'),

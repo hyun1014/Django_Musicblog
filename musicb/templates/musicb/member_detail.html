@@ -1,9 +1,9 @@
 {% extends 'musicb/base.html' %}
 {% block title %}About {{object.name}}{% endblock %}
 {% block content %}
-    <h2>Search result</h2>
+    <h2>Member</h2>
     <h3>{{object.name}}</h3>
     <ul>
-        <li>Team - {% if object.team %}{{object.team}}{% else %}None{% endif %}</li>
+        <li>Team - {% if object.team %}<a href="{% url 'musicblog:artistview_detail' object.team.slug %}">{{object.team}}</a>{% else %}None{% endif %}</li>
     </ul>
 {% endblock %}
