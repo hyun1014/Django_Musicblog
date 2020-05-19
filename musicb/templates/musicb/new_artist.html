@@ -1,0 +1,18 @@
+{% extends 'musicb/base.html' %}
+{% block title %}New Artist{% endblock %}
+{% block content %}
+    {% include 'musicb/musicblog_base.html' %}
+    <h3>Add new artist</h3>
+    <form action="{% url 'musicblog:newinfosuccess' %}" method='POST'>
+        {% csrf_token %}
+        <label for='nameinput'>Name: </label>
+        <input type="text" id='nameinput' name='name'><br>
+        <label for='company'>Company: </label>
+        <input type='text' id='company' name='company'><br>
+        <label for='debut'>Debut: </label>
+        <input type='date' id='debut' name='debut'><br>
+        <label for='artistinfo'>Textarea: </label>
+        <textarea cols='50' rows='10' name='artistinfo'></textarea><br>
+        <input type='submit' value='Submit!'>
+    </form>
+{% endblock %}

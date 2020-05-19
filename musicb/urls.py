@@ -13,4 +13,10 @@ urlpatterns = [
     path('album/(?P<slug>[-\w]+)/$', views.AlbumDV.as_view(), name='albumview_detail'),
     path('song/', views.SongLV.as_view(), name='songview'),
     path('song/(?P<slug>[-\w]+)/$', views.SongDV.as_view(), name='songview_detail'),
+    path('newinfo/', views.NewInfoView.as_view(), name='newinfo'),
+    path('newinfo/newartist', views.NewArtistView.as_view(), name='new_artist'),
+    #path('newinfo/newmember', views.NewMemberView.as_view(), name='new_member'),
+    #path('newinfo/newalbum', views.NewAlbumView.as_view(), name='new_album'),
+    #path('newinfo/newtrack', views.NewTrackView.as_view(), name='new_song'),
+    path('newinfo/newinfosuccess', views.NewInfoSuccessView.as_view(), name='newinfosuccess'),
 ]

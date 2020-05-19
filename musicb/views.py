@@ -98,3 +98,29 @@ class SongLV(ListView):
 
 class SongDV(DetailView):
     model = Song
+
+class NewInfoView(TemplateView):
+    template_name='musicb/newinfo.html'
+
+class NewArtistView(TemplateView):
+    template_name = 'musicb/new_artist.html'
+
+# class NewMemberView(TemplateView):
+#     template_name = 'musicb/new_member.html'
+
+# class NewAlbumView(TemplateView):
+#     template_name = 'musicb/new_album.html'
+
+# class NewTrackView(TemplateView):
+#     template_name = 'musicb/new_track.html'
+
+class NewInfoSuccessView(View):
+    def post(self, request):
+        name = request.POST['name']
+        company = request.POST['company']
+        debut = request.POST['debut']
+        artistinfo = request.POST['artistinfo']
+        slug = name.lower().replace(' ', '-')
+        new_artist = Artist(name=name, slug=slug, company=company, debut=debut, artist_info=artistinfo)
+        new_artist.save()
+        return render(request, template_name='musicb/newinfosuccess.html')

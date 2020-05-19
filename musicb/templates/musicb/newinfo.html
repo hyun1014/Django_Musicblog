@@ -1,0 +1,10 @@
+{% extends 'musicb/base.html' %}
+{% block title %}New info{% endblock %}
+{% block content %}
+    {% include 'musicb/musicblog_base.html' %}
+    <h3>Add new information</h3>
+    <div>
+        <a class="no_linkdecoration" href="{% url 'musicblog:new_artist' %}">Artist</a>&nbsp;&nbsp;&nbsp;
+        
+    </div>
+{% endblock %}
