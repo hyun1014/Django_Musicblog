@@ -6,7 +6,7 @@
     {% if object_list %}
         <ul>
             {% for album in object_list %}
-                <li><a class='no_linkdecoration' href="{% url 'musicblog:albumview_detail' album.slug %}">{{album.title}}</a></li>
+                <li><a class='no_linkdecoration' href="{% url 'musicblog:albumview_detail' album.slug %}">{{album.title}} - {{album.artist.name}}</a></li>
             {% endfor %}
         </ul>
     {% else %}

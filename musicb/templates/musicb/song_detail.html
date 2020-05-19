@@ -2,7 +2,7 @@
 {% block title %}About {{object.title}}{% endblock %}
 {% block content %}
     {% include 'musicb/musicblog_base.html' %}
-    <h2>Song</h2>
+    <h2>Track</h2>
     <h3>{{object.title}}</h3>
     <ul>
         <li>Artist - {% if object.artist %}<a class='no_linkdecoration' href="{% url 'musicblog:artistview_detail' object.artist.slug %}">{{object.artist}}</a>{% else %}Unknown{% endif %}</li>
