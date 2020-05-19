@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}About {{object.name}}{% endblock %}
 {% block content %}
+    {% include 'musicb/musicblog_base.html' %}
     <h2>Artist</h2>
     <h3>{{object.name}}</h3>
     <img src="{% static 'img/'|add:object.name|add:'_main.jpg' %}" alt='{{object.name}} image' width='400px' height='300px'>

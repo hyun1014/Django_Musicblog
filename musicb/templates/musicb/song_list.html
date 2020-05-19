@@ -1,6 +1,7 @@
 {% extends 'musicb/base.html' %}
 {% block title %}Song List{% endblock %}
 {% block content %}
+    {% include 'musicb/musicblog_base.html' %}
     <h3>Song List</h3>
     {% if object_list %}
         <ul>
