@@ -127,7 +127,7 @@ class NewInfoSuccessView(View):
             company = request.POST['company']
             debut = request.POST['debut']
             artistinfo = request.POST['artistinfo']
-            slug = name.lower().replace(' ', '-').replace('(','').replace(')','')
+            slug = name.lower().replace(' ', '-').replace('(','').replace(')','').replace('.','')
             new_artist = Artist(name=name, slug=slug, company=company, debut=debut, artist_info=artistinfo)
             try:
                 if debut=="" or int(debut)<1900 or int(debut)>2020: # 데뷔 연도 유효성 검증
@@ -148,11 +148,12 @@ class NewInfoSuccessView(View):
         elif itype=='member': ### Member 추가 ###
             name = request.POST['name']
             team = request.POST['team']
-            slug = name.lower().replace(' ', '-').replace('(','').replace(')','')
+            slug = name.lower().replace(' ', '-').replace('(','').replace(')','').replace('.','')
             try:
-                if Member.objects.filter(name=name).exists() and Artist.objects.filter(name=team).exists():
+                new_member = Member(name=name, slug=slug)
+                new_member.team = Artist.objects.filter(name__icontains=team)[0] # 괄호 여부와 상관없이 일단 포함
+                if Member.objects.filter(name=name).exists() and Artist.objects.filter(name=team).exists(): #UNIQUE constraint failed: musicb_member.slug 에러 발생. 차후 수정 요망.
                     raise AlreadyExist
-                new_member = Member(name=name, slug=slug, team=Artist.objects.get(name=team))
             except (Artist.DoesNotExist):
                 con = {'error_noartist':True, 'ex_name': name}
                 return render(request, 'musicb/new_member.html', con)
@@ -166,9 +167,10 @@ class NewInfoSuccessView(View):
             title = request.POST['title']
             artist = request.POST['artist']
             on_sale = request.POST['on_sale']
-            slug = title.lower().replace(' ', '-').replace('(','').replace(')','')
+            slug = title.lower().replace(' ', '-').replace('(','').replace(')','').replace('.','')
             try:
-                new_album = Album(title=title, slug=slug, artist=Artist.objects.get(name=artist), on_sale=on_sale)
+                new_album = Album(title=title, slug=slug, on_sale=on_sale)
+                new_album.artist = Artist.objects.filter(name__icontains=artist)[0] # 괄호 여부와 상관없이 일단 포함
             except (Artist.DoesNotExist):
                 con = {'error_noartist':True, 'ex_title':title, 'ex_sale':on_sale}
                 return render(request, 'musicb/new_album.html', con)
@@ -182,7 +184,7 @@ class NewInfoSuccessView(View):
             is_titlesong = request.POST['is_titlesong'] # 아예 bool 값을 받아올수는 없을까 -------------------------
             youtube_id = request.POST['youtube_id']
             lyrics = request.POST['lyrics']
-            slug = title.lower().replace(' ', '-').replace('(','').replace(')','')
+            slug = title.lower().replace(' ', '-').replace('(','').replace(')','').replace('.','')
             try:
                 new_track = Track(title=title, slug=slug, is_titlesong=(True if is_titlesong=="True" else False), youtube_id=youtube_id, lyrics=lyrics)
                 new_track.artist = Artist.objects.filter(name__icontains=artist)[0] # 괄호 여부와 상관없이 일단 포함

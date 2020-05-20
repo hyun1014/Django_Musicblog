@@ -9,7 +9,7 @@
         <label for='nameinput'>*곡 제목: </label>
         <input type="text" id='nameinput' name='title' required value="{{ex_title}}"><br>
         <label for='artist'>*아티스트: </label>
-        <input type="text" id="artist" name="artist" required>{% if error_noartist %}&nbsp;해당 아티스트가 존재하지 않습니다.{% endif %}<br>
+        <input type="text" id="artist" name="artist" required value="{{ex_artist}}">{% if error_noartist %}&nbsp;해당 아티스트가 존재하지 않습니다.{% endif %}<br>
         <label for='album'>앨범: </label>
         <input type="text" id="album" name="album">{% if error_noalbum %}&nbsp;해당 앨범이 존재하지 않습니다.{% endif %}<br>
         타이틀 곡 여부: &nbsp;
@@ -19,7 +19,7 @@
         <label for='youtube'>유튜브 영상 링크 ID: </label>
         <input type="text" id="youtube" name="youtube_id" value={{ex_you}}><br>
         가사: <br>
-        <textarea cols="50" rows="20" name="lyrics">{{ex_lyrics}}</textarea>
+        <textarea cols="50" rows="20" name="lyrics">{{ex_lyrics}}</textarea><br>
         <input type='submit' value='Submit!'>
     </form>
 {% endblock %}
