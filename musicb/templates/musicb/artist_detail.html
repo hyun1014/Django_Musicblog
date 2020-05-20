@@ -5,10 +5,10 @@
     {% include 'musicb/musicblog_base.html' %}
     <h2>Artist</h2>
     <h3>{{object.name}}</h3>
-    <img src="{% static 'img/'|add:object.name|add:'_main.jpg' %}" alt='{{object.name}} image' width='400px' height='300px'>
+    <img src="{% static 'img/'|add:object.name|add:'_main.jpg' %}" alt='{{object.name}} image does not exist yet.' width='500px' height='350px'>
     <ul>
         <li>Company - {% if object.company %}{{object.company}}{% else %}None{% endif %}</li>
-        <li>Debut year - {% if object.debut %}{{object.debut|date:"Y"}}{% else %}Unknown{% endif %}</li>
+        <li>Debut year - {% if object.debut %}{{object.debut}}{% else %}Unknown{% endif %}</li>
         <li>
             Member<br>
             <ul>
@@ -28,8 +28,8 @@
         <li>
             Tracks<br>
             <ul>
-                {% for song in object.song_set.all %}
-                    <li><a class='no_linkdecoration' href="{% url 'musicblog:songview_detail' song.slug %}">{{song.title}}</a></li>
+                {% for track in object.track_set.all %}
+                    <li><a class='no_linkdecoration' href="{% url 'musicblog:trackview_detail' track.slug %}">{{track.title}}</a></li>
                 {% endfor %}
             </ul>
         </li>

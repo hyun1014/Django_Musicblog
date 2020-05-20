@@ -10,14 +10,14 @@ class AlbumInline(admin.StackedInline):
     model = Album
     extra = 2
 
-class SongInline(admin.StackedInline):
-    model = Song
+class TrackInline(admin.StackedInline):
+    model = Track
     extra = 3
 
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
-    inlines = [MemberInline, AlbumInline, SongInline]
+    inlines = [MemberInline, AlbumInline, TrackInline]
     
 
 @admin.register(Member)
@@ -28,6 +28,6 @@ class MemberAdmin(admin.ModelAdmin):
 class AlbumAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
-@admin.register(Song)
-class SongAdmin(admin.ModelAdmin):
+@admin.register(Track)
+class TrackAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}

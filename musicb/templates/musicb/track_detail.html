@@ -1,0 +1,21 @@
+{% extends 'musicb/base.html' %}
+{% load static %}
+{% block title %}About {{object.title}}{% endblock %}
+{% block content %}
+    {% include 'musicb/musicblog_base.html' %}
+    <h2>Track</h2>
+    <h3>{{object.title}}</h3>
+    <div width="700px" style="float:left; margin:0px 50px 0px 0px;">
+        <img src="{% static 'img/'|add:object.album.title|add:'_main.jpg' %}" alt='{{object.title}}&apos; album image does not exists yet.' width='300px' height='300px'>
+        <ul>
+            <li>Artist - {% if object.artist %}<a class='no_linkdecoration' href="{% url 'musicblog:artistview_detail' object.artist.slug %}">{{object.artist}}</a>{% else %}Unknown{% endif %}</li>
+            <li>Album - {% if object.album %}<a class='no_linkdecoration' href="{% url 'musicblog:albumview_detail' object.album.slug %}">{{object.album}}</a>{% else %}Unknown{% endif %}</li>
+        </ul>
+        {% if object.youtube_id %}
+            <iframe width="640px" height="360px" src="https://www.youtube.com/embed/{{object.youtube_id}}" allowfullscreen></iframe>
+        {% endif %}
+    </div>
+    <div width="300px" style="float:right; word-wrap:break-word;">
+        <pre style="overflow:auto; white-space:pre-wrap; width:300px;">{{object.lyrics}}</pre>
+    </div>
+{% endblock %}

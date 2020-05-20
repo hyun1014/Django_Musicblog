@@ -1,0 +1,15 @@
+{% extends 'musicb/base.html' %}
+{% block title %}New member{% endblock %}
+{% block content %}
+    {% include 'musicb/musicblog_base.html' %}
+    <h3>뮤지션 추가</h3>
+    * 표시는 필수 작성 항목입니다.
+    <form action="{% url 'musicblog:newinfosuccess' itype='member' %}" method='POST'>
+        {% csrf_token %}
+        <label for='nameinput'>*이름: </label>
+        <input type="text" id='nameinput' name='name' required value="{{ex_name}}">{% if error_alexist %}&nbsp;동일한 정보가 이미 존재합니다.{% endif %}<br>
+        <label for='team'>*소속 팀: </label>
+        <input type="text" id="team" name="team" required>{% if error_noartist %}&nbsp;해당 아티스트가 존재하지 않습니다.{% endif %}<br>
+        <input type='submit' value='Submit!'>
+    </form>
+{% endblock %}

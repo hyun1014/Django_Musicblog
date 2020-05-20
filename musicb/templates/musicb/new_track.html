@@ -1,0 +1,25 @@
+{% extends 'musicb/base.html' %}
+{% block title %}New track{% endblock %}
+{% block content %}
+    {% include 'musicb/musicblog_base.html' %}
+    <h3>곡 추가</h3>
+    * 표시는 필수 작성 항목입니다.
+    <form action="{% url 'musicblog:newinfosuccess' itype='track' %}" method='POST'>
+        {% csrf_token %}
+        <label for='nameinput'>*곡 제목: </label>
+        <input type="text" id='nameinput' name='title' required value="{{ex_title}}"><br>
+        <label for='artist'>*아티스트: </label>
+        <input type="text" id="artist" name="artist" required>{% if error_noartist %}&nbsp;해당 아티스트가 존재하지 않습니다.{% endif %}<br>
+        <label for='album'>앨범: </label>
+        <input type="text" id="album" name="album">{% if error_noalbum %}&nbsp;해당 앨범이 존재하지 않습니다.{% endif %}<br>
+        타이틀 곡 여부: &nbsp;
+        True: <input type="radio" id="title_t" name="is_titlesong" value='True'> &nbsp;&nbsp;&nbsp;
+        False: <input type="radio" id="title_f" name="is_titlesong" value='False' checked>
+        <br>
+        <label for='youtube'>유튜브 영상 링크 ID: </label>
+        <input type="text" id="youtube" name="youtube_id" value={{ex_you}}><br>
+        가사: <br>
+        <textarea cols="50" rows="20" name="lyrics">{{ex_lyrics}}</textarea>
+        <input type='submit' value='Submit!'>
+    </form>
+{% endblock %}

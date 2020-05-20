@@ -2,14 +2,14 @@
 {% block title %}Song List{% endblock %}
 {% block content %}
     {% include 'musicb/musicblog_base.html' %}
-    <h3>Song List</h3>
+    <h3>Track List</h3>
     {% if object_list %}
         <ul>
-            {% for song in object_list %}
-                <li><a class='no_linkdecoration' href="{% url 'musicblog:songview_detail' song.slug %}">{{song.title}} - {{song.artist.name}}</a></li>
+            {% for track in object_list %}
+                <li><a class='no_linkdecoration' href="{% url 'musicblog:trackview_detail' track.slug %}">{{track.title}} - {{track.artist.name}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
-        There is no song.
+        There is no track.
     {% endif %}
 {% endblock %}

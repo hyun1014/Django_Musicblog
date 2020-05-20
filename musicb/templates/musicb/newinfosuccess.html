@@ -2,6 +2,7 @@
 {% block title %}Success!{% endblock %}
 {% block content %}
     {% include 'musicb/musicblog_base.html' %}
-    <h3>Add new artist</h3>
+    <h3>Add new {{type}}</h3>
     <h4>Success!</h4>
+    <h4><a href="{% url 'musicblog:index' %}">Go to index</a></h4>
 {% endblock %}

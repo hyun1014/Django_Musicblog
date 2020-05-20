@@ -36,10 +36,10 @@
     {% endif %}
     <hr>
     <h2>Track</h2>
-    {% if song_list %}
+    {% if track_list %}
         <ul>
-            {% for song in song_list %}
-                <li><a class='no_linkdecoration' href="{% url 'musicblog:songview_detail' song.slug %}">{{song.title}}</a></li>
+            {% for track in track_list %}
+                <li><a class='no_linkdecoration' href="{% url 'musicblog:trackview_detail' track.slug %}">{{track.title}}</a></li>
             {% endfor %}
         </ul>
     {% else %}

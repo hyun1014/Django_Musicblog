@@ -2,17 +2,19 @@
 {% block title %}New Artist{% endblock %}
 {% block content %}
     {% include 'musicb/musicblog_base.html' %}
-    <h3>Add new artist</h3>
-    <form action="{% url 'musicblog:newinfosuccess' %}" method='POST'>
+    <h3>아티스트 추가</h3>
+    * 표시는 필수 작성 항목입니다.
+    <form action="{% url 'musicblog:newinfosuccess' itype='artist' %}" method='POST'>
         {% csrf_token %}
-        <label for='nameinput'>Name: </label>
-        <input type="text" id='nameinput' name='name'><br>
-        <label for='company'>Company: </label>
-        <input type='text' id='company' name='company'><br>
-        <label for='debut'>Debut: </label>
-        <input type='date' id='debut' name='debut'><br>
-        <label for='artistinfo'>Textarea: </label>
-        <textarea cols='50' rows='10' name='artistinfo'></textarea><br>
+        <label for='nameinput'>*이름: </label>
+        <input type="text" id='nameinput' name='name' required value="{{ex_name}}">{% if error_alexist %}&nbsp;같은 이름의 아티스트가 이미 존재합니다.{% endif %}<br>
+        <label for='company'>&nbsp;소속사: </label>
+        <input type='text' id='company' name='company' value="{{ex_com}}"><br>
+        <label for='debut'>&nbsp;데뷔: </label>
+        <input type='number' id='debut' name='debut' value={% if error_alexist or error_notvalidyear %}{{ex_debut}}{% else %}'2020'{% endif %}>
+            {% if error_notvalidyear %}유효하지 않은 연도입니다. (1900~2020){% endif %}<br>
+        아티스트 정보:<br>
+        <textarea cols='50' rows='10' name='artistinfo'>{{ex_info}}</textarea><br>
         <input type='submit' value='Submit!'>
     </form>
 {% endblock %}

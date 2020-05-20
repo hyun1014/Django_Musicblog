@@ -5,12 +5,12 @@
     {% include 'musicb/musicblog_base.html' %}
     <h2>Album</h2>
     <h3>{{object.title}}</h3>
-    <img src="{% static 'img/'|add:object.title|add:'_main.jpg' %}" alt='{{object.title}} image' width='300px' height='300px'>
+    <img src="{% static 'img/'|add:object.title|add:'_main.jpg' %}" alt='{{object.title}} image does not exists yet.' width='300px' height='300px'>
     <ul>
         <li>Artist - <a class='no_linkdecoration' href="{% url 'musicblog:artistview_detail' object.artist.slug %}">{{object.artist}}</a></li>
         <li>On sale - {{object.on_sale|date:"Y-m-d"}}</li>
         <li>Title track - {% if title_tracks %}
-            {% for t in title_tracks %}<a class='no_linkdecoration' href="{% url 'musicblog:songview_detail' t.slug %}">{{t.title}}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+            {% for t in title_tracks %}<a class='no_linkdecoration' href="{% url 'musicblog:trackview_detail' t.slug %}">{{t.title}}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
             {% else %}Unknown
             {% endif %}
         </li>
@@ -18,8 +18,8 @@
     <div id='tracklist'>
         <h4>Track list</h4>
         <ul>
-            {% for track in object.song_set.all %}
-                <li><a class='no_linkdecoration' href="{% url 'musicblog:songview_detail' track.slug %}">{{track.title}}</a></li>
+            {% for track in object.track_set.all %}
+                <li><a class='no_linkdecoration' href="{% url 'musicblog:trackview_detail' track.slug %}">{{track.title}}</a></li>
             {% endfor %}
         </ul>
     </div>
