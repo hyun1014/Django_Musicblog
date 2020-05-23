@@ -4,7 +4,7 @@
     {% include 'musicb/musicblog_base.html' %}
     <h3>뮤지션 추가</h3>
     * 표시는 필수 작성 항목입니다.
-    <form action="{% url 'musicblog:newinfosuccess' itype='member' %}" method='POST'>
+    <form action="{% url 'musicblog:newinfosuccess' itype='member' %}" method='POST' onsubmit="return isValidArtist()">
         {% csrf_token %}
         <label for='nameinput'>*이름: </label>
         <input type="text" id='nameinput' name='name' required value="{{ex_name}}">{% if error_alexist %}&nbsp;동일한 정보가 이미 존재합니다.{% endif %}<br>
@@ -12,4 +12,28 @@
         <input type="text" id="team" name="team" required>{% if error_noartist %}&nbsp;해당 아티스트가 존재하지 않습니다.{% endif %}<br>
         <input type='submit' value='Submit!'>
     </form>
+    <button type="button" onclick="foo()">test</button>
+    <div id="testdiv"></div>
+    <script>
+        function isValidArtist() {
+            var target = document.getElementById("team").value;
+            {% for i in artist_list %}
+            if (target=="{{i.name}}"){
+                return true;
+            }
+            {% endfor %}
+            var maybe_list = [];
+            {% for i in artist_list %}
+            if ("{{i.name}}".indexOf(target)!=-1){
+                maybe_list.push("{{i.name}}");
+            }
+            {% endfor %}
+            var maybe_message = "No match found. Maybe..."
+            for (j=0 ; j<maybe_list.length ; j++){
+                maybe_message = maybe_message.concat("<br>", maybe_list[j]);
+            }
+            document.getElementById("testdiv").innerHTML = maybe_message;
+            return false;
+        }
+    </script>
 {% endblock %}
