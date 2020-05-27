@@ -4,7 +4,7 @@
     {% include 'musicb/musicblog_base.html' %}
     <h3>곡 추가</h3>
     * 표시는 필수 작성 항목입니다.
-    <form action="{% url 'musicblog:newinfosuccess' itype='track' %}" method='POST'>
+    <form action="{% url 'musicblog:newinfosuccess' itype='track' %}" method='POST' onsubmit="return isValid()">
         {% csrf_token %}
         <label for='nameinput'>*곡 제목: </label>
         <input type="text" id='nameinput' name='title' required value="{{ex_title}}"><br>
@@ -22,4 +22,54 @@
         <textarea cols="50" rows="20" name="lyrics">{{ex_lyrics}}</textarea><br>
         <input type='submit' value='Submit!'>
     </form>
+    <p id="maybe"></p>
+    <script>
+        function isValidArtist() {
+            var tar = document.getElementById('artist').value;
+            {% for i in artist_list %}
+            if (tar=="{{i.name}}")
+                return true;
+            {% endfor %}
+            var maybe_list = [];
+            {% for i in artist_list %}
+            if("{{i.name}}".indexOf(tar)!=-1)
+                maybe_list.push("{{i.name}}");
+            {% endfor %}
+            var maybe_msg = "No matched artist found. Maybe...<br>" + maybe_list.join("<br>");
+            return maybe_msg;
+        }
+        function isValidAlbum() {
+            var tar = document.getElementById('album').value;
+            if (tar==""){
+                tar = "Unknown";
+                return true;
+            }
+            {% for i in album_list %}
+            if(tar=="{{i.title}}")
+                return true;
+            {% endfor %}
+            var maybe_list = [];
+            {% for i in album_list %}
+            if("{{i.title}}".indexOf(tar)!=-1)
+                maybe_list.push("{{i.title}}");
+            {% endfor %}
+            var maybe_msg = "No matched album found. Maybe...<br>" + maybe_list.join("<br>");
+            return maybe_msg;
+        }
+        function isValid() {
+            var isArtist = isValidArtist();
+            var isAlbum = isValidAlbum();
+            if(isArtist!=true){
+                document.getElementById('maybe').innerHTML = isArtist;
+                return false;
+            }
+            else if(isAlbum!=true){
+                document.getElementById('maybe').innerHTML = isAlbum;
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    </script>
 {% endblock %}

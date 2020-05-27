@@ -4,7 +4,7 @@
     {% include 'musicb/musicblog_base.html' %}
     <h3>앨범 추가</h3>
     * 표시는 필수 작성 항목입니다.
-    <form action="{% url 'musicblog:newinfosuccess' itype='album' %}" method='POST'>
+    <form action="{% url 'musicblog:newinfosuccess' itype='album' %}" method='POST' onsubmit="return isValidArtist()">
         {% csrf_token %}
         <label for='nameinput'>*앨범 제목: </label>
         <input type="text" id='nameinput' name='title' required value="{{ex_title}}"><br>
@@ -14,4 +14,22 @@
         <input type="date" id="sale" name="on_sale" required value="{{ex_sale}}"><br>
         <input type='submit' value='Submit!'>
     </form>
+    <p id="maybe"></p>
+    <script>
+        function isValidArtist() {
+            var target = document.getElementById('artist').value;
+            {% for i in artist_list %}
+            if ("{{i.name}}"==target)
+                return true;
+            {% endfor %}
+            var maybe_list = [];
+            {% for i in artist_list %}
+            if ("{{i.name}}".indexOf(target)!=-1)
+                maybe_list.push("{{i.name}}");
+            {% endfor %}
+            var maybe_msg = "No match found. Maybe...<br>" + maybe_list.join("<br>");
+            document.getElementById('maybe').innerHTML = maybe_msg;
+            return false;
+        }
+    </script>
 {% endblock %}

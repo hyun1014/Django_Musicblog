@@ -13,7 +13,7 @@
         <input type='submit' value='Submit!'>
     </form>
     <button type="button" onclick="foo()">test</button>
-    <div id="testdiv"></div>
+    <p id="maybe"></p>
     <script>
         function isValidArtist() {
             var target = document.getElementById("team").value;
@@ -32,7 +32,7 @@
             for (j=0 ; j<maybe_list.length ; j++){
                 maybe_message = maybe_message.concat("<br>", maybe_list[j]);
             }
-            document.getElementById("testdiv").innerHTML = maybe_message;
+            document.getElementById("maybe").innerHTML = maybe_message;
             return false;
         }
     </script>

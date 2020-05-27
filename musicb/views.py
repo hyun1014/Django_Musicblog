@@ -108,12 +108,26 @@ class NewArtistView(TemplateView):
 
 class NewMemberView(TemplateView):
     template_name = 'musicb/new_member.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["artist_list"] = Artist.objects.all()
+        return context
+    
 
 class NewAlbumView(TemplateView):
     template_name = 'musicb/new_album.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["artist_list"] = Artist.objects.all()
+        return context
 
 class NewTrackView(TemplateView):
     template_name = 'musicb/new_track.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["artist_list"] = Artist.objects.all()
+        context["album_list"] = Album.objects.all()
+        return context
 
 class NotValidYear(Exception): # 데뷔 연도 유효성 검증
     pass
