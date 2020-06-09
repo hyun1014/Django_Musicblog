@@ -5,7 +5,7 @@
     {% include 'musicb/musicblog_base.html' %}
     <h2>Album</h2>
     <h3>{{object.title}}</h3>
-    <img src="{% static 'img/'|add:object.title|add:'_main.jpg' %}" alt='{{object.title}} image does not exists yet.' width='300px' height='300px'>
+    <img src="{% static 'musicb/img/'|add:object.title|add:'_main.jpg' %}" alt='{{object.title}} image does not exists yet.' width='300px' height='300px'>
     <ul>
         <li>Artist - <a class='no_linkdecoration' href="{% url 'musicblog:artistview_detail' object.artist.slug %}">{{object.artist}}</a></li>
         <li>On sale - {{object.on_sale|date:"Y-m-d"}}</li>
